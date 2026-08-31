@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-left: 2rem;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #444;
+}
+
+.navbar a.active {
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}

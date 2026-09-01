@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  height: var(--navbar-height);
+  background-color: var(--color-navbar);
 }
 
 .brand {
@@ -12,12 +14,12 @@
 
 .navbar a {
   text-decoration: none;
-  color: #444;
+  color: var(--color-border)
 }
 
 .navbar a.active {
   font-weight: 600;
-  color: #2a2a2a;
+  color: var(--color-accent);
 }
 
 .navbar ul {

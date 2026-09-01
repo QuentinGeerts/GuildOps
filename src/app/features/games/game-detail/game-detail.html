@@ -1,3 +1,4 @@
+<a routerLink="/games">Retourner à la liste des jeux</a>
 
 @if (loading()) {
   <p>Chargement...</p>
@@ -7,6 +8,8 @@
 
   <h1>{{ detail.name }}</h1>
   <p>Niveau maximum: {{ detail.maxLevel }}</p>
+
+  <hr>
 
   <!-- div.columns>section*2 -->
   <div class="columns">

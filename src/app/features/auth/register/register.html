@@ -4,32 +4,30 @@
   <label for="accountName">
     Nom de compte:
     <input type="text" name="accountName" id="accountName" formControlName="accountName" />
-    @if (accountName.touched && accountName.invalid) {
-      @if (accountName.hasError('required')) {
-        <p class="error">Le champ est requis</p>
-      } @else if (accountName.hasError('minlength')) {
-        <p class="error">Le champ doit faire minimum 3 caractères</p>
-      } @else {
-        <p class="error">Le champ doit faire maximum 256 caractères</p>
-      }
-    }
   </label>
+  @if (accountName.touched && accountName.invalid) {
+    @if (accountName.hasError('required')) {
+      <p class="error">Le champ est requis</p>
+    } @else if (accountName.hasError('minlength')) {
+      <p class="error">Le champ doit faire minimum 3 caractères</p>
+    } @else {
+      <p class="error">Le champ doit faire maximum 256 caractères</p>
+    }
+  }
 
   <label for="email">
     Email:
     <input type="email" name="email" id="email" autocomplete="email" formControlName="email" />
   </label>
 
-  <div>
-    @if (password.value) {
-      <ul class="password-strength">
-        <li [class.valid]="!passwordStrengthErrors?.digit">Un chiffre</li>
-        <li [class.valid]="!passwordStrengthErrors?.lowercase">Une minuscule</li>
-        <li [class.valid]="!passwordStrengthErrors?.uppercase">Une majuscule</li>
-        <li [class.valid]="!passwordStrengthErrors?.special">Un caractère spécial</li>
-      </ul>
-    }
-  </div>
+  @if (password.value) {
+    <ul class="password-strength">
+      <li [class.valid]="!passwordStrengthErrors?.digit">Un chiffre</li>
+      <li [class.valid]="!passwordStrengthErrors?.lowercase">Une minuscule</li>
+      <li [class.valid]="!passwordStrengthErrors?.uppercase">Une majuscule</li>
+      <li [class.valid]="!passwordStrengthErrors?.special">Un caractère spécial</li>
+    </ul>
+  }
   <label for="password">
     Mot de passe:
     <input
@@ -39,16 +37,17 @@
       formControlName="password"
       appPasswordToggle
     />
-    @if (password.touched && password.invalid) {
-      @if (password.hasError('required')) {
-        <p class="error">Le champ est requis</p>
-      } @else if (password.hasError('minlength')) {
-        <p class="error">Le champ doit faire minimum 8 caractères</p>
-      } @else if (password.hasError('maxlength')) {
-        <p class="error">Le champ doit faire maximum 128 caractères</p>
-      }
-    }
   </label>
+
+  @if (password.touched && password.invalid) {
+    @if (password.hasError('required')) {
+      <p class="error">Le champ est requis</p>
+    } @else if (password.hasError('minlength')) {
+      <p class="error">Le champ doit faire minimum 8 caractères</p>
+    } @else if (password.hasError('maxlength')) {
+      <p class="error">Le champ doit faire maximum 128 caractères</p>
+    }
+  }
 
   <button [disabled]="form.invalid">Créer un compte</button>
 </form>

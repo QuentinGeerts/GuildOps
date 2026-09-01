@@ -1,10 +1,10 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { GamesService } from '../../../core/services/games.service';
 import { GameDetails } from '../../../shared/models/game.model';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-game-detail',
   styleUrl: './game-detail.css',
   templateUrl: './game-detail.html',

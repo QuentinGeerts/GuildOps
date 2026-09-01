@@ -1,11 +1,6 @@
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.125rem;
-}
-
-form button {
-  width: 250px;
+form > * {
+  display: block;
+  margin: 15px auto;
 }
 
 .password-strength {
@@ -16,17 +11,22 @@ form button {
 }
 
 .password-strength li {
-  color: #b91c1c;
+  color: #c75353;
 }
 
 .password-strength li.valid {
-  color: #15803d;
+  color: #2ead5d;
 }
 
 .password-strength li::before {
-  content: '✗ ';
+  content: '❌ ';
 }
 
 .password-strength li.valid::before {
-  content: '✓ ';
+  content: '✅ ';
+}
+
+.error {
+  color: #c75353;
+  font-size: .8rem;
 }

@@ -1,0 +1,23 @@
+
+.cards {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 250px;
+  border: 1px solid var(--color-border);
+  padding: 10px;
+}
+
+.card a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.card-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}

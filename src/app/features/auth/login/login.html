@@ -1,1 +1,17 @@
-<p>login works!</p>
+<h1>Se connceter</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+<label> 
+  Email:
+  <input type="email" name="email" id="email" formControlName="email">
+</label>
+
+<label>
+  Mot de passe:
+  <input type="password" name="password" id="password" formControlName="password" appPasswordToggle>
+</label>
+
+<button>Se connecter</button>
+
+</form>

@@ -1,15 +1,16 @@
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 2rem;
   height: var(--navbar-height);
   background-color: var(--color-navbar);
+  padding: 2rem;
 }
 
 .brand {
   font-weight: 600;
   font-size: 1.25rem;
-  margin-left: 2rem;
 }
 
 .navbar a {
@@ -26,4 +27,5 @@
   list-style: none;
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }

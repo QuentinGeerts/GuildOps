@@ -2,7 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-import { PasswordToggleDirective } from "../../../shared/directives/password-toggle.directive";
+import { PasswordToggleDirective } from '../../../shared/directives/password-toggle.directive';
+import { RegisterPlayerRequest } from '../../../shared/models/auth.model';
 import {
   passwordStrength,
   PasswordStrengthErrors,
@@ -15,7 +16,6 @@ import {
   templateUrl: './register.html',
 })
 export class Register {
-
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
@@ -45,17 +45,20 @@ export class Register {
       return;
     }
 
-    const credentials = this.form.value;
-    
-    this.authService.register(credentials)
-      .subscribe({
-        next: () => {
-          this.router.navigate(["login"]);
-        },
-        error: (err) => {
-          console.log("Erreur: ", err);
-        },
-      })
+    const credentials: RegisterPlayerRequest = this.form.value;
 
+    this.authService.register(credentials).subscribe({
+      next: () => {
+        this.authService
+          .login({ email: credentials.email, password: credentials.password })
+          .subscribe({
+            next: () => this.router.navigate(['dashboard']),
+            error: (err) => console.log('Erreur: ', err),
+          });
+      },
+      error: (err) => {
+        console.log('Erreur: ', err);
+      },
+    });
   }
 }

@@ -12,7 +12,9 @@ export class AuthService {
   private readonly http = inject(HttpClient);
 
   private readonly tokens = signal<AuthToken | null>(readFromStorage());
+  
   readonly isLoggedIn = computed(() => this.tokens() !== null);
+  readonly accessToken = computed(() => this.tokens()?.accessToken ?? null);
 
   register(request: RegisterPlayerRequest): Observable<unknown> {
     return this.http.post(`${environment.apiUrl}/players`, request);

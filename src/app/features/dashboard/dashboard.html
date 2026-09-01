@@ -1,1 +1,28 @@
-<p>dashboard works!</p>
+@if (loading()) {
+  <p>Chargement...</p>
+} @else if (player(); as me) {
+  <h1>Bonjour, {{ me.accountName }}</h1>
+
+  <h2>Mes personnages ({{ me.characters.length }}):</h2>
+
+  <p>
+    <a routerLink="/characters/new">Créer un personnage</a>
+  </p>
+
+  <div class="cards">
+    @for (c of me.characters; track $index) {
+      <div class="card">
+        <p>{{ c.name }}</p>
+        <p>Niv. {{ c.level }}</p>
+
+        @if (c.guildId) {
+          <a [routerLink]="['guilds', c.guildId]">{{ c.guildName }}</a>
+        } @else {
+          <p>Sans guilde</p>
+        }
+      </div>
+    } @empty {
+      <p>Aucun personnage pour l'instant.</p>
+    }
+  </div>
+}

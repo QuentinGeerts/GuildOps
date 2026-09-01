@@ -1,0 +1,9 @@
+form * {
+  display: block;
+  margin: 10px 0;
+}
+
+.error {
+  color: #c75353;
+  font-size: 0.8rem;
+}

@@ -11,6 +11,7 @@ export const routes: Routes = [
   {
     path: 'games',
     loadChildren: () => import('./features/games/games.routes').then((x) => x.routes),
+    title: 'GuildOps | Liste des jeux',
   },
 
   {
@@ -27,8 +28,31 @@ export const routes: Routes = [
 
   {
     path: 'dashboard',
-    loadComponent: () => import('./features/dashboard/dashboard').then(f => f.Dashboard),
-    title: 'GuildsOps | Dashboard',
-    canActivate: [authGuard]
+    loadComponent: () => import('./features/dashboard/dashboard').then((f) => f.Dashboard),
+    title: 'GuildOps | Dashboard',
+    canActivate: [authGuard],
+  },
+
+  {
+    path: 'characters',
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: 'new',
+        loadComponent: () =>
+          import('./features/characters/character-create/character-create').then(
+            (f) => f.CharacterCreate,
+          ),
+        title: "GuildOps | Création d'un personnage",
+      },
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./features/characters/character-details/character-details').then(
+            (f) => f.CharacterDetails,
+          ),
+        title: 'GuildOps | Détails personnage',
+      },
+    ],
   },
 ];

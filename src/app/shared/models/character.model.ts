@@ -9,3 +9,11 @@ export interface Character {
   guildName: string | null;
   createdAt: string;
 }
+
+export interface CreateCharacterRequest {
+  characterClassId: string;
+  gameId: string;
+  name: string;
+  server: string;
+  level: number;
+}

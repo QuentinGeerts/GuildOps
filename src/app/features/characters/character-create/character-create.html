@@ -1,0 +1,82 @@
+<a routerLink="/dashboard">Retour au dashboard</a>
+
+<h1>Nouveau personnage :</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <label for="game">
+    Jeu
+    <select formControlName="gameId" name="game" id="game">
+      <option value=""> -- Choisir un jeu -- </option>
+      @for (game of games(); track $index) {
+        <option [value]="game.id">{{ game.name }}</option>
+      }
+    </select>
+  </label>
+  @if (gameId.touched && gameId.invalid) {
+    @if (gameId.hasError('required')) {
+      <p class="error">Le champ est requis</p>
+    }
+  }
+
+  <label for="classes">
+    Classe
+    <select name="characterClassId" id="characterClassId" formControlName="characterClassId" [disabled]="classes().length === 0">
+      <option value=""> -- Choisir une classe -- </option>
+      @for (class of classes(); track $index) {
+        <option [value]="class.id">{{ class.name }}</option>
+      }
+    </select>
+  </label>
+  @if (characterClassId.touched && characterClassId.invalid) {
+    @if (characterClassId.hasError('required')) {
+      <p class="error">Le champ est requis</p>
+    }
+  }
+
+  <label for="name">
+    Nom
+    <input type="text" name="name" id="name" formControlName="name">
+  </label>
+  @if (name.touched && name.invalid) {
+    @if (name.hasError('required')) {
+      <p class="error">Le champ est requis</p>
+    } @else if (name.hasError('minlength')) {
+      <p class="error">Le champ doit faire minimum 2 caractères</p>
+    } @else if (name.hasError('maxlength')) {
+      <p class="error">Le champ doit faire maximum 256 caractères</p>
+    }
+  }
+
+  <label for="server">
+    Serveur
+    <input type="text" name="server" id="server" formControlName="server">
+  </label>
+  @if (server.touched && server.invalid) {
+    @if (server.hasError('required')) {
+      <p class="error">Le champ est requis</p>
+    } @else if (server.hasError('minlength')) {
+      <p class="error">Le champ doit faire minimum 2 caractères</p>
+    } @else if (server.hasError('maxlength')) {
+      <p class="error">Le champ doit faire maximum 256 caractères</p>
+    }
+  }
+
+  <label for="level">
+    Niveau (maximum: {{ maxLevel() }})
+    <input type="number" name="level" id="level" formControlName="level">
+  </label>
+  @if (level.touched && level.invalid) {
+    @if (level.hasError('required')) {
+      <p class="error">Le champ est requis</p>
+    } @else if (level.hasError('min')) {
+      <p class="error">Le niveau doit être supérieur ou égal à 1</p>
+    } @else if (level.hasError('max')) {
+      <p class="error">Le niveau doit être inférieur ou égal à {{ maxLevel() }}</p>
+    }
+  }
+
+  <button [disabled]="form.invalid">Créer le personnage</button>
+
+
+</form>
